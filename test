@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class MaxArray {
+	static int a[]=new int[1000];
+	static int max[]=new int[1000];
+	static int t,y,u,m=0;
+	static int f=0;
+	static int Max=0;
+	public static void main(String args[]) {
+		Scanner sc= new Scanner(System.in);
+		System.out.println("请输入整数的个数：");
+		int n=sc.nextInt();//输入整数的个数
+		System.out.println("请输入数组：");
+		if(n<=0)
+			System.out.print("0");//整数的个数为负数时，输出为0
+		else {
+			for(int i=0;i<n;i++) {  //输入n个整数
+				a[i]=sc.nextInt();
+			}
+		}
+		int MAX=input(n,a);
+		print(MAX);
+	}
+	public static int input(int n,int a[] ) {
+		
+			for(int i=0;i<n;i=m) {
+				int j=i;
+				if(a[j]>0)//如果第一个数是正数
+				{
+					y=a[j];//y保存的是连续的正数和
+					j++;
+					while(a[j]>0)
+					{
+						y=y+a[j];
+						j++;
+					}
+					t=a[j];//t保存的是连续负数的和
+					j++;
+					while(a[j]<0) {
+						t=t+a[j];
+						j++;
+					}
+					m=j;  //m的值为负数后第一个正数的下标
+					u=a[j];//u保存的是连续负数的和
+					j++;
+					while(a[j]>0) {
+						u=u+a[j];
+						j++;
+					}
+					if((y+u)>t) {   //如果前段连续正数的和加上后段连续正数的和大于中间连续负数的和，记录出待选最大值
+						max[f]=y+u+t;
+						f++;
+					}
+				}
+				else
+					m++;
+			}
+			
+			for(int i=0;i<f;i++) {  //将记录的待选最大值比较得出最大值
+				if(Max<max[i])
+					Max=max[i];
+			}
+		
+		return Max;
+		
+	}
+	public static int print(int max) {
+		System.out.println("最大字段和为："+max);
+		return max;
+	}
+}
